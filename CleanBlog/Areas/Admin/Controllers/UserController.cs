@@ -29,7 +29,12 @@ namespace CleanBlog.Areas.Admin.Controllers
         [HttpGet("Login")]
         public IActionResult Login()
         {
-            return View(new LoginVM());
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return View(new LoginVM());
+            }
+            return RedirectToAction("Index", "User", new { area = "Admin" });
+
         }
 
         [HttpPost("Login")]
@@ -59,8 +64,16 @@ namespace CleanBlog.Areas.Admin.Controllers
 
         
             await _signInManager.PasswordSignInAsync(vm.Username, vm.Password, vm.RememberMe, true);
-
+            _notification.Success("Giriş Başarılı!");
             return RedirectToAction("Index","User",new {area="Admin"});
         }
-    }
+
+        [HttpPost]
+        public IActionResult Logout()
+        {
+            _signInManager.SignOutAsync();
+            _notification.Success("Çıkış Yaptınız.");
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
+    } 
 }
