@@ -50,14 +50,60 @@ namespace FineBlog.Areas.Admin.Controllers
         }
 
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public async Task<IActionResult> ResetPassword(string id)
+        {
+            var existingUser = await _userManager.FindByIdAsync(id);
+            if (existingUser == null)
+            {
+                _notification.Error("User doesnot exsits");
+                return View();
+            }
+            var vm = new ResetPasswordVM()
+            {
+                Id = existingUser.Id,
+                UserName = existingUser.UserName
+            };
+            return View(vm);
+        }
 
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordVM vm)
+        {
+            if (!ModelState.IsValid) { return View(vm); }
+            var existingUser = await _userManager.FindByIdAsync(vm.Id);
+            if (existingUser == null)
+            {
+                _notification.Error("User doesnot exist");
+                return View(vm);
+            }
+            var token = await _userManager.GeneratePasswordResetTokenAsync(existingUser);
+            var result = await _userManager.ResetPasswordAsync(existingUser, token, vm.NewPassword);
+            if (result.Succeeded)
+            {
+                _notification.Success("Password reset succuful");
+                return RedirectToAction(nameof(Index));
+            }
+            return View(vm);
+        }
+
+
+
+
+
+
+
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Register()
         {
             return View(new RegisterVM());
         }
 
-      
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterVM vm)
         {
@@ -140,6 +186,6 @@ namespace FineBlog.Areas.Admin.Controllers
             return RedirectToAction("Index", "Home", new { area = "" });
         }
 
-      
+
     }
 }
