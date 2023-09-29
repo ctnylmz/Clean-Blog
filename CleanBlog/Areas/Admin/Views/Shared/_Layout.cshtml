@@ -50,43 +50,46 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" asp-action="Index" asp-controller="Post" asp-area="Admin">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Gönder</span>
                 </a>
             </li>
 
+            @if(User.IsInRole("Admin")){
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" asp-action="Index" asp-controller="User" asp-area="Admin">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Kullanıcı</span>
                 </a>
             </li>
 
-            <hr class="sidebar-divider my-0">
+                <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                   aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-file"></i>
-                    <span>Sayfalar</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Ana Sayfa</a>
-                        <a class="collapse-item" href="utilities-border.html">Hakkımda</a>
-                        <a class="collapse-item" href="utilities-animation.html">iletişim</a>
-                        <a class="collapse-item" href="utilities-other.html">Gizlilik Politikası</a>
+                <!-- Nav Item - Utilities Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                       aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa-fw fa-file"></i>
+                        <span>Sayfalar</span>
+                    </a>
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                         data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Custom Utilities:</h6>
+                            <a class="collapse-item" href="utilities-color.html">Ana Sayfa</a>
+                            <a class="collapse-item" href="utilities-border.html">Hakkımda</a>
+                            <a class="collapse-item" href="utilities-animation.html">iletişim</a>
+                            <a class="collapse-item" href="utilities-other.html">Gizlilik Politikası</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
 
+            }
+         
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
