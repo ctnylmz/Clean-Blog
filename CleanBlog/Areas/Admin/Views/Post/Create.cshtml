@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-3">
                         <div class="mb-2">
-                            <img src="    https://cdn.pnghd.pics/data/787/picture-icon-png-0.jpg" class="img-fluid" id="thumbnail" />
+                            <img src="https://cdn.pnghd.pics/data/787/picture-icon-png-0.jpg" class="img-fluid" id="thumbnail" />
                         </div>
                         <div class="mb-2">
                             <label>Thumbnail</label>
@@ -51,4 +51,13 @@
     </div>
 </div>
 
-                        
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(".custom-file").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            document.getElementById('thumbnail').src = window.URL.createObjectURL(this.files[0])
+        });
+    </script>
+}

@@ -1,6 +1,7 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using CleanBlog.Data;
 using CleanBlog.Models;
+using CleanBlog.Utilites;
 using CleanBlog.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -28,9 +29,30 @@ namespace CleanBlog.Areas.Admin.Controllers
             _notification = notyfcation;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var listOfPosts = new List<Post>();
+            var loggedInUser = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == User.Identity!.Name);
+            var loggedInUserRole = await _userManager.GetRolesAsync(loggedInUser!);
+            if (loggedInUserRole[0] == WebsiteRoles.WebsiteAdmin)
+            {
+                listOfPosts = await _context.Posts!.Include(x=>x.ApplicationUser).ToListAsync();
+            }
+            else
+            {
+                listOfPosts = await _context.Posts!.Include(x => x.ApplicationUser).Where(x=>x.ApplicationUser!.Id==loggedInUser!.Id).ToListAsync();
+            }
+            var listOfPostsVM = listOfPosts.Select(x => new PostVM()
+            {
+                Id = x.Id,
+                Title = x.Title,
+                CreatedDate = x.CreatedDate,
+                ThumbnailUrl = x.ThumbnailUrl,
+                AuthorName = x.ApplicationUser.FirstName + " " + x.ApplicationUser.LastName
+            }).ToList();
+
+            return View(listOfPostsVM);
         }
 
         [HttpGet]
