@@ -30,8 +30,14 @@
                             <td>@post.CreatedDate</td>
                             <td>@post.AuthorName</td>
                             <td>
-                                <a class="btn btn-danger" asp-action="ResetPassword" asp-controller="User" asp-route-id="@post.Id">Delete</a>
-                                <a class="btn btn-info" asp-action="ResetPassword" asp-controller="User" asp-route-id="@post.Id">Edit</a>
+                               <div class="row">
+                                    <form method="post" asp-area="Admin" asp-action="Delete" asp-controller="Post" asp-route-id="@post.Id" onsubmit="return confirm('Do You Want to delete this post')">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                    <form method="post" asp-area="Admin" asp-action="Edit" asp-controller="Post" asp-route-id="@post.Id">
+                                        <button type="submit" class="btn btn-info">Edit</button>
+                                    </form>
+                               </div>
                             </td>
                         </tr>
                     }
