@@ -37,11 +37,11 @@ namespace CleanBlog.Areas.Admin.Controllers
             var loggedInUserRole = await _userManager.GetRolesAsync(loggedInUser!);
             if (loggedInUserRole[0] == WebsiteRoles.WebsiteAdmin)
             {
-                listOfPosts = await _context.Posts!.Include(x=>x.ApplicationUser).ToListAsync();
+                listOfPosts = await _context.Posts!.Include(x => x.ApplicationUser).ToListAsync();
             }
             else
             {
-                listOfPosts = await _context.Posts!.Include(x => x.ApplicationUser).Where(x=>x.ApplicationUser!.Id==loggedInUser!.Id).ToListAsync();
+                listOfPosts = await _context.Posts!.Include(x => x.ApplicationUser).Where(x => x.ApplicationUser!.Id == loggedInUser!.Id).ToListAsync();
             }
             var listOfPostsVM = listOfPosts.Select(x => new PostVM()
             {
@@ -97,7 +97,7 @@ namespace CleanBlog.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var post = await  _context.Posts!.FirstOrDefaultAsync(x=> x.Id == id);
+            var post = await _context.Posts!.FirstOrDefaultAsync(x => x.Id == id);
 
             var loggedInUser = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == User.Identity!.Name);
             var loggedInUserRole = await _userManager.GetRolesAsync(loggedInUser!);
@@ -110,8 +110,75 @@ namespace CleanBlog.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Post", new { area = "Admin" });
             }
 
-            return RedirectToAction("Index","Post",new {area="Admin"});
+            return RedirectToAction("Index", "Post", new { area = "Admin" });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var post = await _context.Posts!.FirstOrDefaultAsync(x => x.Id == id);
+            if (post == null)
+            {
+                _notification.Error("Post not found");
+                return View();
+            }
+
+            var vm = new CreatePostVM()
+            {
+                Id = post.Id,
+                Title = post.Title,
+                ShortDescription = post.ShortDescription,
+                Description = post.Description,
+                ThumbnailUrl = post.ThumbnailUrl,
+            };
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(CreatePostVM vm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(vm);
+            }
+
+            var post = await _context.Posts!.FirstOrDefaultAsync(x=>x.Id == vm.Id);
+            
+            if(post == null)
+            {
+                _notification.Error("Post not found");
+                return View();
+            }
+
+
+            var loggedInUser = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == User.Identity!.Name);
+            var loggedInUserRole = await _userManager.GetRolesAsync(loggedInUser!);
+
+            if (loggedInUserRole[0] != WebsiteRoles.WebsiteAdmin && loggedInUser?.Id != post?.ApplicationUserId)
+            {
+                _notification.Error("Düzenlemedi Yetki Hatası");
+                return RedirectToAction("Index");
+
+            }
+
+            post.Title = vm.Title;
+            post.ShortDescription = vm.ShortDescription;
+            post.Description = vm.Description;
+
+            if (vm.Thumbnail != null)
+            {
+                post.ThumbnailUrl = UploadImage(vm.Thumbnail);
+            }
+
+            await _context.SaveChangesAsync();
+            _notification.Success("Gönderi Düzenlendi!");
+            return RedirectToAction("Index", "Post", new { area = "Admin" });
+
+
+        }
+
+
         private string UploadImage(IFormFile file)
         {
             string uniqueFileName = "";

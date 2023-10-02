@@ -30,18 +30,18 @@
                             <td>@post.CreatedDate</td>
                             <td>@post.AuthorName</td>
                             <td>
-                               <div class="row">
+                                <div class="row">
                                     <form method="post" asp-area="Admin" asp-action="Delete" asp-controller="Post" asp-route-id="@post.Id" onsubmit="return confirm('Do You Want to delete this post')">
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
-                                    <form method="post" asp-area="Admin" asp-action="Edit" asp-controller="Post" asp-route-id="@post.Id">
-                                        <button type="submit" class="btn btn-info">Edit</button>
-                                    </form>
-                               </div>
+
+                                    <a href="/Admin/Post/Edit/@post.Id" type="submit" class="btn btn-info">Edit</a>
+                             
+                                </div>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
- </div>
+    </div>
