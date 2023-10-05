@@ -30,7 +30,7 @@ namespace CleanBlog.Utilites
                     Email = "admin@gmail.com",
                     FirstName = "Super",
                     LastName = "Admin"
-                }, "Admin@0011").Wait();
+                }, "Admin0000").Wait();
 
                 var appUser = _context.ApplicationUsers!.FirstOrDefault(x => x.Email == "admin@gmail.com");
                 if (appUser != null)
