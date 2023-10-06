@@ -1,14 +1,26 @@
-﻿@{
-    ViewData["Title"] = "İletişim";
-}
+﻿@model CleanBlog.ViewModels.PageVM
 
-<header class="masthead" style="background-image: url('/Template/assets/img/contact-bg.jpg')">
+@{
+    ViewData["Title"] = "İletişim";
+
+    string pageThumbnail = "";
+
+    if (Model.ThumbnailUrl == null)
+    {
+        pageThumbnail = "/Template/assets/img/contact-bg.jpg";
+    }
+    else
+    {
+        pageThumbnail = Model.ThumbnailUrl;
+    }
+}
+<header class="masthead" style="background-image: url('/thumbnails/@pageThumbnail')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
-                    <h1>Clean Blog</h1>
-                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                    <h1>@Html.Raw(Model.Title)</h1>
+                    <span class="subheading">@Html.Raw(Model.Title)</span>
                 </div>
             </div>
         </div>
@@ -19,7 +31,7 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
-                <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
+                <p>@Model.Description</p>
                 <div class="my-5">
                     <!-- * * * * * * * * * * * * * * *-->
                     <!-- * * SB Forms Contact Form * *-->
