@@ -13,5 +13,6 @@ namespace Clean_Blog.Data
         }
 
         public DbSet<Header> Headers { get; set; }
+        public DbSet<Footer> Footers { get; set; }
     }
 }

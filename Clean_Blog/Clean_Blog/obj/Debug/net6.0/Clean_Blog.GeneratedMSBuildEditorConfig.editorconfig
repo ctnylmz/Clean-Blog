@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Jack\Documents\GitHub\Clean_Blog\Clean_Blog\Clean_Blog
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Jack/Documents/GitHub/Clean_Blog/Clean_Blog/Clean_Blog/Areas/Admin/Views/Footer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRm9vdGVyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Jack/Documents/GitHub/Clean_Blog/Clean_Blog/Clean_Blog/Areas/Admin/Views/Header/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSGVhZGVyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -50,6 +54,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Jack/Documents/GitHub/Clean_Blog/Clean_Blog/Clean_Blog/Views/Popular/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9wdWxhclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jack/Documents/GitHub/Clean_Blog/Clean_Blog/Clean_Blog/Views/Shared/Components/FooterList/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcRm9vdGVyTGlzdFxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jack/Documents/GitHub/Clean_Blog/Clean_Blog/Clean_Blog/Views/Shared/Components/HeaderList/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcSGVhZGVyTGlzdFxEZWZhdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Jack/Documents/GitHub/Clean_Blog/Clean_Blog/Clean_Blog/Views/Shared/Error.cshtml]
