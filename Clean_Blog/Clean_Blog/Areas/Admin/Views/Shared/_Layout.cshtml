@@ -108,11 +108,12 @@
                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                          data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Custom Utilities:</h6>
-                            <a class="collapse-item" href="utilities-color.html">Colors</a>
-                            <a class="collapse-item" href="utilities-border.html">Borders</a>
-                            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                            <a class="collapse-item" href="utilities-other.html">Other</a>
+                            <a class="collapse-item" href="/Admin/Post/Create">Create Post</a>
+                            <a class="collapse-item" href="/Admin/Post">Show Post</a>
+                            @if (User.IsInRole("SuperAdmin"))
+                            {
+                            <a class="collapse-item" href="utilities-border.html">Show All Post</a>
+                            }
                         </div>
                     </div>
                 </li>
