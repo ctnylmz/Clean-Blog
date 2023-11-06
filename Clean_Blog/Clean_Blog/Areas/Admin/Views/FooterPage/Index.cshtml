@@ -1,0 +1,30 @@
+﻿
+
+<div class="col-md-8 mx-auto">
+    <form method="post">
+        <input type="hidden" class="form-control" name="Id" value="@Model.Id">
+
+        <div class="form-group">
+            <label>LINK 1</label>
+            <input type="text" class="form-control" name="Link1" value="@Model.Link1" required>
+        </div>
+
+        <div class="form-group">
+            <label>LINK 2</label>
+            <input type="text" class="form-control" name="Link2" value="@Model.Link2" required>
+        </div>
+
+        <div class="form-group">
+            <label>LINK 3</label>
+            <input type="text" class="form-control" name="Link3" value="@Model.Link3" required>
+        </div>
+
+        <div class="form-group">
+            <label>TITLE</label>
+            <input type="text" class="form-control" name="Title" value="@Model.Title" required>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary w-100">UPDATE</button>
+    </form>
+</div>

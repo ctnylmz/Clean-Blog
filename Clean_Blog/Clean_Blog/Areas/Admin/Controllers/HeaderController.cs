@@ -14,6 +14,8 @@ namespace Clean_Blog.Areas.Admin.Controllers
             _context = context;
         }
 
+
+        [Route("/Admin/Header")]
         public IActionResult Index()
         {
             var header = _context.Headers.Find(1);
@@ -21,6 +23,8 @@ namespace Clean_Blog.Areas.Admin.Controllers
             return View(header);
         }
 
+
+        [Route("/Admin/Header")]
         [HttpPost]
         public IActionResult Index(Header header)
         {
