@@ -1,4 +1,5 @@
 ﻿using Clean_Blog.Data;
+using Clean_Blog.Migrations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Clean_Blog.Controllers
@@ -14,9 +15,41 @@ namespace Clean_Blog.Controllers
 
         public IActionResult Index()
         {
-            var home = _context.Pages.Find(1);
+            var posts = _context.Enters.ToList();
 
-            return View(home);
+            foreach (var post in posts)
+            {
+                var user = _context.Users.FirstOrDefault(u => u.Id == post.UserId);
+
+                if (user != null)
+                {
+                    post.User = user;
+                }
+            }
+
+            posts.Reverse();
+
+            return View(posts);
         }
+
+
+
+        [Route("Post/{Id}")]
+        public IActionResult Post(int Id)
+        {
+            var post = _context.Enters.FirstOrDefault(p => p.Id == Id);
+
+            var user = _context.Users.FirstOrDefault(u => u.Id == post.UserId);
+
+            if (user != null)
+            {
+                post.User = user;
+            }
+
+            return View(post);
+        }
+
+
+
     }
 }

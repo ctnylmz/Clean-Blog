@@ -23,8 +23,6 @@ namespace Clean_Blog.Areas.Admin.Controllers
         }
 
 
-
-
         [Route("/Admin/Post/Create")]
         [HttpGet]
         public async Task<IActionResult> Create()
@@ -61,6 +59,61 @@ namespace Clean_Blog.Areas.Admin.Controllers
             var post = _context.Enters.Where(p => p.UserId == user.Id).ToList();
             
             return View(post);
+        }
+
+
+        [Route("/Admin/GetAllPost")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllPost()
+        {
+            var post =  _context.Enters.ToList();
+
+            foreach (var item in post)
+            {
+                var user = _context.Users.FirstOrDefault(x => x.Id == item.UserId);
+
+                if (user != null)
+                {
+                    item.User = user;
+                }
+            }
+
+
+            post.Reverse();
+
+            return View(post);
+        }
+
+
+        [Route("/Admin/PostDelete/{Id}")]
+        [HttpGet]
+        public async Task<IActionResult> PostDelete(int id)
+        {
+  
+
+            var post = _context.Enters.Find(id);
+
+            _context.Remove(post);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
+        [Route("/Admin/PostAllDelete/{Id}")]
+        [HttpGet]
+        public async Task<IActionResult> PostAllDelete(int id)
+        {
+
+
+            var post = _context.Enters.Find(id);
+
+            _context.Remove(post);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("GetAllPost");
         }
 
     }
