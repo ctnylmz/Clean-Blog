@@ -1,6 +1,3 @@
-
-Certainly! I'll help you improve the clarity and organization of your README.md file. Here's a revised version:
-
 Clean-Blog ASP.NET Core 6 Project
 Clean-Blog is an ASP.NET Core 6 project that provides a clean and simple blog template. Follow the steps below to set up and run the project.
 
