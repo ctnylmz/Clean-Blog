@@ -35,9 +35,8 @@ Clean-Blog is an ASP.NET Core 6 project that provides a clean and simple blog te
 
 # 9 Update Pages Settings:
 - Go to the Pages Settings and make any necessary edits.
-- Extra Information
 
-# 10 Make sure to replace the placeholder images with your own images:
+# 10 Extra Information
 
 - /assets/img/home-bg.jpg
 - /assets/img/about-bg.jpg
