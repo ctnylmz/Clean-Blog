@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\Clean_Blog.props" />
-</Project>
