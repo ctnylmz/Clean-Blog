@@ -22,11 +22,11 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<CleanBlogContext>()
 .AddDefaultTokenProviders();
 
-using (var scope = builder.Services.BuildServiceProvider().CreateScope())
-{
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    await RoleUtilities.EnsureRolesCreated(roleManager);
-}
+//using (var scope = builder.Services.BuildServiceProvider().CreateScope())
+//{
+//    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+//    await RoleUtilities.EnsureRolesCreated(roleManager);
+//}
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -36,11 +36,11 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-    DefaultUserUtilities.CreateUser(userManager).Wait();
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+//    DefaultUserUtilities.CreateUser(userManager).Wait();
+//}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
