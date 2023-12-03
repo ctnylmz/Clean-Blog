@@ -6,4 +6,11 @@
 6 - Take the codes with comment lines in the program.cs file from the comment line
 7 - Run Project
 8 - example https://localhost:7220/ go to admin page  https://localhost:7220/admin 
-9 = Email = "admin@gmail.com password" = "Admin123!" 
+9 = Email = "admin@gmail.com" password = "Admin123!" 
+10 = go to Pages Setting and edit all
+
+Extra Information
+/assets/img/home-bg.jpg
+/assets/img/about-bg.jpg
+/assets/img/post-bg.jpg
+/assets/img/contact-bg.jpg
